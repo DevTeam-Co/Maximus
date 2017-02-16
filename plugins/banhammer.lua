@@ -416,18 +416,18 @@ end
      end
 if is_gbanned(data.id_) then
    if not lang then
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already_ *globally banned*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`User is already globally banned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
     else
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از گروه های ربات محروم بود*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل از گروه های ربات محروم بود!`\n\n`اطلاعات کاربر:`\n\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
       end
    end
   administration['gban_users'][tostring(data.id_)] = user_name
     save_data(_config.moderation.data, administration)
    kick_user(data.id_, arg.chat_id)
      if not lang then
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *globally banned*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n`User has been"..user_name.." *"..data.id_.."* _has been_ *globally banned*", 0, "md")
    else
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از تمام گروه های ربات محروم شد*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`انجام شد!`\n`کاربر از تمام گروه های ربات محروم شد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
 end
   if cmd == "unbanall" then
@@ -437,25 +437,25 @@ end
     end
 if not is_gbanned(data.id_) then
      if not lang then
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not_ *globally banned*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`User is not globally banned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
    else
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از گروه های ربات محروم نبود*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از گروه های ربات محروم نبود!`\n\n`مشخصات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
       end
    end
   administration['gban_users'][tostring(data.id_)] = nil
     save_data(_config.moderation.data, administration)
     if not lang then
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *globally unbanned*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!\n`User has been globally unbanned!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
    else
-     return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از محرومیت گروه های ربات خارج شد*", 0, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`انجام شد!`\n`کاربراز محرومیت گروه های ربات خارج شد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
 end
   if cmd == "kick" then
    if is_mod1(arg.chat_id, data.id_) then
    if not lang then
-  return tdcli.sendMessage(arg.chat_id, "", 0, "_You can't kick_ *mods,owners and bot admins*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "*Error!*\n_You can't kick_ *mods,owners and bot admins*", 0, "md")
     elseif lang then
-  return tdcli.sendMessage(arg.chat_id, "", 0, "*شما نمیتوانید مدیران،صاحبان گروه و ادمین های ربات رو اخراج کنید*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "_خطا!_\n_شما نمیتوانید مدیران،صاحبان گروه و ادمین های ربات را اخراج کنید!_", 0, "md")
    end
   else
      kick_user(data.id_, arg.chat_id)
@@ -464,14 +464,14 @@ end
   if cmd == "delall" then
    if is_mod1(arg.chat_id, data.id_) then
    if not lang then
-  return tdcli.sendMessage(arg.chat_id, "", 0, "_You can't delete messages_ *mods,owners and bot admins*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "*Error!*_You can't delete messages_ *mods,owners and bot admins*", 0, "md")
    elseif lang then
-  return tdcli.sendMessage(arg.chat_id, "", 0, "*شما نمیتوانید پیام های مدیران،صاحبان گروه و ادمین های ربات رو پاک کنید*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "_خطا!_\n_شما نمیتوانید پیام های مدیران،صاحبان گروه و ادمین های ربات را پاک کنید!_", 0, "md")
    end
   else
 tdcli.deleteMessagesFromUser(arg.chat_id, data.id_, dl_cb, nil)
    if not lang then
-  return tdcli.sendMessage(arg.chat_id, "", 0, "_All_ *messages* _of_ "..user_name.." *[ "..data.id_.." ]* _has been_ *deleted*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "*Done!*\n_All_ *messages* _of_ "..user_name.." *[ "..data.id_.." ]* _has been_ *deleted*", 0, "md")
       elseif lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "*تمام پیام های* "..user_name.." *[ "..data.id_.." ]* *پاک شد*", 0, "md")
        end
@@ -481,7 +481,7 @@ else
     if lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر یافت نشد_", 0, "md")
    else
-  return tdcli.sendMessage(arg.chat_id, "", 0, "*User Not Found*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "*Error!*\n_I could not finc this user_", 0, "md")
       end
    end
 end
@@ -503,9 +503,9 @@ end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if is_mod1(msg.to.id, matches[2]) then
    if not lang then
-     tdcli.sendMessage(msg.to.id, "", 0, "_You can't kick mods,owners or bot admins_", 0, "md")
+     tdcli.sendMessage(msg.to.id, "", 0, "*Error!*\n_You can't kick mods,owners or bot admins_", 0, "md")
    elseif lang then
-     tdcli.sendMessage(msg.to.id, "", 0, "*شما نمیتوانید مدیران،صاحبان گروه و ادمین های ربات رو اخراج کنید*", 0, "md")
+     tdcli.sendMessage(msg.to.id, "", 0, "_خطا!_\n_شما نمیتوانید مدیران،صاحبان گروه و ادمین های ربات را اخراج کنید!_", 0, "md")
          end
      else
 kick_user(matches[2], msg.to.id)
@@ -529,14 +529,14 @@ end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if is_mod1(msg.to.id, matches[2]) then
    if not lang then
-   return tdcli.sendMessage(msg.to.id, "", 0, "_You can't delete messages mods,owners or bot admins_", 0, "md")
+   return tdcli.sendMessage(msg.to.id, "", 0, "*Error!*\n_You can't delete messages mods,owners or bot admins_", 0, "md")
      elseif lang then
-   return tdcli.sendMessage(msg.to.id, "", 0, "*شما نمیتوانید پیام های مدیران،صاحبان گروه و ادمین های ربات رو پاک کنید*", 0, "md")
+   return tdcli.sendMessage(msg.to.id, "", 0, "_خطا!_\n_شما نمیتوانید پیام های مدیران،صاحبان گروه و ادمین های ربات را پاک کنید!_", 0, "md")
    end
      else
 tdcli.deleteMessagesFromUser(msg.to.id, matches[2], dl_cb, nil)
     if not lang then
-  return tdcli.sendMessage(msg.to.id, "", 0, "_All_ *messages* _of_ *[ "..matches[2].." ]* _has been_ *deleted*", 0, "md")
+  return tdcli.sendMessage(msg.to.id, "", 0, "*Done!*\n_All_ *messages* _of_ *[ "..matches[2].." ]* _has been_ *deleted*", 0, "md")
    elseif lang then
   return tdcli.sendMessage(msg.to.id, "", 0, "*تمامی پیام های* *[ "..matches[2].." ]* *پاک شد*", 0, "md")
          end
@@ -568,7 +568,7 @@ else
      end
    if is_gbanned(matches[2]) then
    if not lang then
-  return tdcli.sendMessage(msg.to.id, "", 0, "*User "..matches[2].." is already globally banned*", 0, "md")
+  return tdcli.sendMessage(msg.to.id, "", 0, "`User is Already globally banned!`\n\n*User id:*"..matches[2].."", 0, "md")
     else
   return tdcli.sendMessage(msg.to.id, "", 0, "*کاربر "..matches[2].." از گروه های ربات محروم بود*", 0, "md")
         end
@@ -577,7 +577,7 @@ else
     save_data(_config.moderation.data, data)
 kick_user(matches[2], msg.to.id)
    if not lang then
- return tdcli.sendMessage(msg.to.id, msg.id, 0, "*User "..matches[2].." has been globally banned*", 0, "md")
+ return tdcli.sendMessage(msg.to.id, msg.id, 0, "*Done!*\n`User has been globally banned!`\n\n*User id:*"..matches[2].."", 0, "md")
     else
  return tdcli.sendMessage(msg.to.id, msg.id, 0, "*کاربر "..matches[2].." از تمام گروه هار ربات محروم شد*", 0, "md")
       end
@@ -600,7 +600,7 @@ end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if not is_gbanned(matches[2]) then
      if not lang then
-   return tdcli.sendMessage(msg.to.id, "", 0, "*User "..matches[2].." is not globally banned*", 0, "md")
+   return tdcli.sendMessage(msg.to.id, "", 0, "`User is not globally banned!`\n\n*User id:*"..matches[2].."", 0, "md")
     else
    return tdcli.sendMessage(msg.to.id, "", 0, "*کاربر "..matches[2].." از گروه های ربات محروم نبود*", 0, "md")
         end
@@ -632,7 +632,7 @@ end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if is_mod1(msg.to.id, matches[2]) then
      if not lang then
-    return tdcli.sendMessage(msg.to.id, "", 0, "_You can't ban mods,owners or bot admins_", 0, "md")
+    return tdcli.sendMessage(msg.to.id, "", 0, "*Error!*\n_You can't ban mods,owners or bot admins_", 0, "md")
     else
     return tdcli.sendMessage(msg.to.id, "", 0, "*شما نمیتوانید مدیران،صاحبان گروه و ادمین های ربات رو از گروه محروم کنید*", 0, "md")
         end
@@ -833,20 +833,20 @@ if matches[1] == "banlist" and is_mod(msg) then
 end
 return {
 	patterns = {
-		"^[!/#](banall)$",
-		"^[!/#](banall) (.*)$",
-		"^[!/#](unbanall)$",
-		"^[!/#](unbanall) (.*)$",
+		"^[!/#](gban)$",
+		"^[!/#](gban) (.*)$",
+		"^[!/#](ugban)$",
+		"^[!/#](ugban) (.*)$",
 		"^[!/#](gbanlist)$",
 		"^[!/#](ban)$",
 		"^[!/#](ban) (.*)$",
 		"^[!/#](unban)$",
 		"^[!/#](unban) (.*)$",
 		"^[!/#](banlist)$",
-		"^[!/#](silent)$",
-		"^[!/#](silent) (.*)$",
-		"^[!/#](unsilent)$",
-		"^[!/#](unsilent) (.*)$",
+		"^[!/#](mute)$",
+		"^[!/#](mute) (.*)$",
+		"^[!/#](umute)$",
+		"^[!/#](umute) (.*)$",
 		"^[!/#](silentlist)$",
 		"^[!/#](kick)$",
 		"^[!/#](kick) (.*)$",
