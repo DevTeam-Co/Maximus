@@ -686,7 +686,7 @@ local lang = redis:get(hash)
 if not lang then
 return "❗️_You're Not_ *Moderator*❗️"
 else
- return "❗️شما مدیر گروه نمیباشید❗️"🏷
+ return "❗️شما مدیر گروه نمیباشید❗️"
 end 
 end
 
