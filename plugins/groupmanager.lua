@@ -353,7 +353,7 @@ tdcli_function ({
 local function id_cb(arg, data)
     return tdcli.sendMessage(arg.chat_id, "", 0, "*"..data.id_.."*", 0, "md")
 end
-》tdcli_function ({
+tdcli_function
     ID = "GetUser",
     user_id_ = data.sender_user_id_
   }, id_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
