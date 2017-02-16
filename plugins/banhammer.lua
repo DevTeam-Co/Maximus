@@ -556,7 +556,7 @@ if not matches[2] and msg.reply_id then
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="banall"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="gban"})
 end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if is_admin1(matches[2]) then
@@ -586,7 +586,7 @@ kick_user(matches[2], msg.to.id)
     tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="banall"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="gban"})
       end
    end
  if matches[1] == "ugban" and is_admin(msg) then
@@ -595,7 +595,7 @@ if not matches[2] and msg.reply_id then
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="unbanall"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="ugban"})
 end
   if matches[2] and string.match(matches[2], '^%d+$') then
    if not is_gbanned(matches[2]) then
@@ -617,7 +617,7 @@ return tdcli.sendMessage(msg.to.id, msg.id, 0, "*کاربر "..matches[2].." ا�
     tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="unbanall"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="ugban"})
       end
    end
    if msg.to.type ~= 'pv' then
