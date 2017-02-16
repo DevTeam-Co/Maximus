@@ -21,7 +21,7 @@ if is_banned(data.id_, arg.chat_id) then
    if not lang then
 		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "`User is Already Banned!!`\n\n*User Info:*\n_Username:_"..user_name.." \n_User Id:_*[ "..data.id_.." ]*", 0, "md")
    else
-		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "`کاربر از قبل محروم بود!!` \n\n `اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*[ "..data.id_.." ]*, "md")
+		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "`کاربر از قبل محروم بود!!` \n\n `اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*[ "..data.id_.." ]*", 0, "md")
 end
 kick_user(data.id_, arg.chat_id)
 end
@@ -86,7 +86,7 @@ if administration[tostring(arg.chat_id)]['banned'][tostring(data.id_)] then
     if not lang then
      return tdcli.sendMessage(arg.chat_id, "", 0, "`User is Already Banned!!`\n\n*User info:*\n_Username:_"..user_name.."\n_User id:_*"..data.id_.."*", 0, "md")
    else
-     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل محروم بود!!`\n\n`مشخصات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_ *"..data.id_.."*, "md")
+     return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر از قبل محروم بود!!`\n\n`مشخصات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_ *"..data.id_.."*", "md")
       end
    end
 administration[tostring(arg.chat_id)]['banned'][tostring(data.id_)] = user_name
@@ -200,7 +200,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, unsilent_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-  if cmd == "gba" then
+  if cmd == "gban" then
 local function gban_cb(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -430,7 +430,7 @@ if is_gbanned(data.id_) then
      return tdcli.sendMessage(arg.chat_id, "", 0, "`انجام شد!`\n`کاربر از تمام گروه های ربات محروم شد!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
 end
-  if cmd == "unbanall" then
+  if cmd == "ugban" then
   if not administration['gban_users'] then
     administration['gban_users'] = {}
     save_data(_config.moderation.data, administration)
