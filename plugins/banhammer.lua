@@ -29,7 +29,7 @@ if is_gbanned(data.id_) then
      if not lang then
 		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "*Error*\n`User is globally Banned!!`\n\n *User info:*\n_Username:_"..user_name.."\n_User id:_*[ "..data.id_.." ]*", 0, "md")
     else
-		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "_خطا!!_\n`کاربر از تمام گروه های ربات محروم است!!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*[ "..data.id_.."]*", 0,md")
+		tdcli.sendMessage(arg.chat_id, arg.msg_id, 0, "_خطا!!_\n`کاربر از تمام گروه های ربات محروم است!!`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*[ "..data.id_.." ]*", 0,"md")
    end
 kick_user(data.id_, arg.chat_id)
      end
