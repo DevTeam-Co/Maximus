@@ -200,7 +200,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, unsilent_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-  if cmd == "banall" then
+  if cmd == "gba" then
 local function gban_cb(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -242,7 +242,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, gban_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-  if cmd == "unbanall" then
+  if cmd == "ugban" then
 local function ungban_cb(arg, data)
 local hash = "gp_lang:"..arg.chat_id
 local lang = redis:get(hash)
@@ -402,7 +402,7 @@ administration[tostring(arg.chat_id)]['is_silent_users'][tostring(data.id_)] = n
      return tdcli.sendMessage(arg.chat_id, "", 0, "`کاربر توانایی چت کردن را بدست آورد`\n\n`اطلاعات کاربر:`\n_یوزرنیم:_"..user_name.."\n_آیدی کاربر:_*"..data.id_.."*", 0, "md")
    end
 end
-  if cmd == "banall" then
+  if cmd == "gban" then
   if not administration['gban_users'] then
     administration['gban_users'] = {}
     save_data(_config.moderation.data, administration)
@@ -550,7 +550,7 @@ tdcli.deleteMessagesFromUser(msg.to.id, matches[2], dl_cb, nil)
          end
       end
    end
- if matches[1] == "banall" and is_admin(msg) then
+ if matches[1] == "gban" and is_admin(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -589,7 +589,7 @@ kick_user(matches[2], msg.to.id)
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="banall"})
       end
    end
- if matches[1] == "unbanall" and is_admin(msg) then
+ if matches[1] == "ugban" and is_admin(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -843,10 +843,10 @@ return {
 		"^[!/#](unban)$",
 		"^[!/#](unban) (.*)$",
 		"^[!/#](banlist)$",
-		"^[!/#](mute)$",
-		"^[!/#](mute) (.*)$",
-		"^[!/#](umute)$",
-		"^[!/#](umute) (.*)$",
+		"^[!/#](silent)$",
+		"^[!/#](silent) (.*)$",
+		"^[!/#](unsilent)$",
+		"^[!/#](unsilent) (.*)$",
 		"^[!/#](silentlist)$",
 		"^[!/#](kick)$",
 		"^[!/#](kick) (.*)$",
