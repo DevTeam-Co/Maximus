@@ -3025,7 +3025,7 @@ return "🌐*زبان گروه تنظیم شد به : فارسی*🌐"
 end
 end
 
-if matches[1] == "help" and is_mod(msg) then
+if matches[1] == "hlp" and is_mod(msg) then
 if not lang then
 text = [[
 *📄secure Bot Commands📄:*
@@ -3427,7 +3427,7 @@ patterns ={
 "^[!/#](floodmax) (%d+)$",
 "^[!/#](res) (.*)$",
 "^[!/#](whois) (%d+)$",
-"^[!/#](help)$",
+"^[!/#](hlp)$",
 "^[!/#](setlang) (.*)$",
 "^[#!/](filter) (.*)$",
 "^[#!/](unfilter) (.*)$",
