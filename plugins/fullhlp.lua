@@ -25,6 +25,7 @@ do
           return{
             patterns = {
               "^[!#/]([Hh][Ee][Ll][Pp] (.*)$",
+              "^[!#/]([Hh][Ee][Ll][Pp]$",
               },
             run = run
             }
