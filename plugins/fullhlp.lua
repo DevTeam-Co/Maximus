@@ -18,7 +18,7 @@ do
             end
           if matches[1]"help" then
             if matches[2]=="member" and not is_mod(msg) then
-              return "<b>well...</b>\n<b>You can only suck my cock :|</b>
+              return "<b>well...</b>\n<b>You can only suck my cock :|</b>"
               end
             end
           
