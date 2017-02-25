@@ -2399,7 +2399,7 @@ if matches[1] == "userid" then
 if not matches[2] and not msg.reply_id then
    if not lang and is_mod(msg) then
 return "📜*Chat ID :* _"..chat.."_\n👤*User ID :* _"..user.."_"
-   else
+   else if is_mod(msg) then
 return "📜*شناسه گروه :* _"..chat.."_\n👤*شناسه شما :* _"..user.."_"
    end
 end
