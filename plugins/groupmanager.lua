@@ -1336,7 +1336,7 @@ if not lang then
    end
 
 local settings = data[tostring(target)]["settings"] 
- text = "⚙*Group Settings🔧:*\n\n🔐_Lock edit :_ *"..settings.lock_edit.."*\n🔐_Lock links :_ *"..settings.lock_link.."*\n🔐_Lock tags :_ *"..settings.lock_tag.."*\n🔐_Lock flood :_ *"..settings.flood.."*\n🔐_Lock spam :_ *"..settings.lock_spam.."*\n🔐_Lock mention :_ *"..settings.lock_mention.."*\n🔐_Lock arabic :_ *"..settings.lock_arabic.."*\n🔐_Lock webpage :_ *"..settings.lock_webpage.."*\n🔐_Lock markdown :_ *"..settings.lock_markdown.."*\n📄_Group welcome :_ *"..settings.welcome.."*\n🔒_Lock pin message :_ *"..settings.lock_pin.."*\n🔒_Bots protection :_ *"..settings.lock_bots.."*\n📛_Flood sensitivity :_ *"..NUM_MSG_MAX.."*\n📅_Expire date_ :  *"..expireen.."*\n*____________________*\n*🔅Bot channel*: :D\n\n*➖➖➖➖➖➖➖➖➖*\n🌐*Group Language* : *EN*"
+ text = "⚙*Group Settings for group :"..msg.from.title.."🔧:*\n\n🔐_Lock edit :_ *"..settings.lock_edit.."*\n🔐_Lock links :_ *"..settings.lock_link.."*\n🔐_Lock tags :_ *"..settings.lock_tag.."*\n🔐_Lock flood :_ *"..settings.flood.."*\n🔐_Lock spam :_ *"..settings.lock_spam.."*\n🔐_Lock mention :_ *"..settings.lock_mention.."*\n🔐_Lock arabic :_ *"..settings.lock_arabic.."*\n🔐_Lock webpage :_ *"..settings.lock_webpage.."*\n🔐_Lock markdown :_ *"..settings.lock_markdown.."*\n📄_Group welcome :_ *"..settings.welcome.."*\n🔒_Lock pin message :_ *"..settings.lock_pin.."*\n🔒_Bots protection :_ *"..settings.lock_bots.."*\n📛_Flood sensitivity :_ *"..NUM_MSG_MAX.."*\n📅_Expire date_ :  *"..expireen.."*\n*____________________*\n*🔅Bot channel*: :D\n\n*➖➖➖➖➖➖➖➖➖*\n🌐*Group Language* : *EN*"
 else
 		 local exp = redis:get("charged:"..msg.chat_id_)
     local day = 86400
@@ -2397,7 +2397,7 @@ local user = msg.from.id
 if msg.to.type ~= 'pv' then
 if matches[1] == "userid" then
 if not matches[2] and not msg.reply_id then
-   if not lang then
+   if not lang and is_mod(msg) then
 return "📜*Chat ID :* _"..chat.."_\n👤*User ID :* _"..user.."_"
    else
 return "📜*شناسه گروه :* _"..chat.."_\n👤*شناسه شما :* _"..user.."_"
