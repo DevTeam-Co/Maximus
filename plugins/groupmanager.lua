@@ -2403,6 +2403,7 @@ return "📜*Chat ID :* _"..chat.."_\n👤*User ID :* _"..user.."_"
 return "📜*شناسه گروه :* _"..chat.."_\n👤*شناسه شما :* _"..user.."_"
    end
 end
+				end
 if msg.reply_id and not matches[2] then
     tdcli_function ({
       ID = "GetMessage",
