@@ -127,6 +127,7 @@ if data[tostring(msg.to.id)]['filterlist'][(word)] then
          return "_کلمه_ *"..word.."* _از قبل فیلتر بود_"
     end
 end
+	end
    data[tostring(msg.to.id)]['filterlist'][(word)] = true
      save_data(_config.moderation.data, data)
    if not lang then
