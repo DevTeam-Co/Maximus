@@ -136,7 +136,6 @@ end
          return "_کلمه_ *"..word.."* _به لیست کلمات فیلتر شده اضافه شد_"
     end
 end
-
 local function unfilter_word(msg, word)
 local hash = "gp_lang:"..msg.to.id
 local lang = redis:get(hash)
