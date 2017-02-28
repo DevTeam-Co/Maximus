@@ -4,17 +4,17 @@ local lang = redis:get(hash)
     -- superuser and admins only (because sudo are always has privilege)
     if not is_admin(msg) then
    if not lang then
-        return '_You are not bot admin_'
+        return '*Error*\n\n`You are not Bot Admin`'
 else
-     return 'شما مدیر ربات نمیباشید'
+     return '_خطا!_n\n_شما ادمین ربات نیستید_'
     end
 end
     local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
 if not lang then
-   return '_Group is already added_'
+   return '*Error*\n\n`Group is already Added`'
 else
-return 'گروه در لیست گروه های مدیریتی ربات هم اکنون موجود است'
+return '_خطا_\n\n_گروه از قبل در لیست گروه های ربات وجود داشت_'
   end
 end
         -- create data array in moderation.json
@@ -70,9 +70,9 @@ end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
     if not lang then
-  return '*Group has been added*'
+  return '*Done!*\n\n`Group has been Added`\n*Group info:*\n_Group name:_ *['..msg.to.title..']*\n_Group ID:_ *['..msg.to.id..']*'
 else
-  return 'گروه با موفقیت به لیست گروه های مدیریتی ربات افزوده شد'
+  return '_انجام شد!_\n\n_گروه با موفقیت به لیست گروه های ربات اضافه شد_\n_اطلاعات گروه:_\n_نام گروه:_ *['..msg.to.title..']*\n_آیدی گروه:_ *['..msg.to.id..']*'
 end
 end
 
@@ -106,7 +106,7 @@ else
       end data[tostring(groups)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
  if not lang then
-  return '*Group has been removed*'
+  return '*Done!*\n_Group has been Removed_\n\n*Group info:*\n_Group name:_*['..msg.to.title..']*\n_Group id:_*[..msg.to.id..]*'
  else
   return 'گروه با موفیت از لیست گروه های مدیریتی ربات حذف شد'
 end
@@ -122,7 +122,7 @@ local data = load_data(_config.moderation.data)
     end
 if data[tostring(msg.to.id)]['filterlist'][(word)] then
    if not lang then
-         return "_Word_ *"..word.."* _is already filtered_"
+         return "*Error!*\n`The verb` *"[..word..]"* `is already Filtered!`"
             else
          return "_کلمه_ *"..word.."* _از قبل فیلتر بود_"
     end
@@ -130,7 +130,7 @@ end
    data[tostring(msg.to.id)]['filterlist'][(word)] = true
      save_data(_config.moderation.data, data)
    if not lang then
-         return "_Word_ *"..word.."* _added to filtered words list_"
+         return "*Done!*\n`New werb Added`\n*["..word.."]*"
             else
          return "_کلمه_ *"..word.."* _به لیست کلمات فیلتر شده اضافه شد_"
     end
@@ -358,7 +358,7 @@ tdcli_function ({
     user_id_ = data.sender_user_id_
   }, demote_cb, {chat_id=data.chat_id_,user_id=data.sender_user_id_})
   end
-    if cmd == "id" then
+    if cmd == "userid" then
 local function id_cb(arg, data)
     return tdcli.sendMessage(arg.chat_id, "", 0, "*"..data.id_.."*", 0, "md")
 end
@@ -2704,10 +2704,10 @@ local data = load_data(_config.moderation.data)
 local chat = msg.to.id
 local user = msg.from.id
 if msg.to.type ~= 'pv' then
-if matches[1] == "id" or matches[1]=="ایدی"then
+if matches[1] == "userid" or matches[1]=="ایدی"then
 if not matches[2] and not msg.reply_id then
    if not lang then
-return "*Chat ID :* _"..chat.."_\n*User ID :* _"..user.."_"
+return "`*Group id:*`~> *["..chat.."]*\n`*User id:*` ~> *["..user.."]* \n`*Your Username:*` ~> "..msg.from.username..""
    else
 return "*شناسه گروه :* _"..chat.."_\n*شناسه شما :* _"..user.."_"
    end
@@ -2717,13 +2717,13 @@ if msg.reply_id and not matches[2] then
       ID = "GetMessage",
       chat_id_ = msg.to.id,
       message_id_ = msg.reply_id
-    }, action_by_reply, {chat_id=msg.to.id,cmd="id"})
+    }, action_by_reply, {chat_id=msg.to.id,cmd="userid"})
   end
 if matches[2] then
    tdcli_function ({
       ID = "SearchPublicChat",
       username_ = matches[2]
-    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="id"})
+    }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="userid"})
       end
    end
 if matches[1] == "pin" and is_mod(msg) and msg.reply_id  or matches[1] == "سنجاق" and is_mod(msg) and msg.reply_id then
@@ -3365,7 +3365,7 @@ end
 if matches[1] == "help" and is_mod(msg) then
 if not lang then
 text = [[
-*Beyond Bot Commands:*
+*Maximus Bot Commands:*
 
 *!setowner* `[username|id|reply]` 
 _Set Group Owner(Multi Owner)_
@@ -3400,7 +3400,7 @@ _UnBan User From Group_
 *!res* `[username]`
 _Show User ID_
 
-*!id* `[reply]`
+*!userid* `[reply]`
 _Show User ID_
 
 *!whois* `[id]`
@@ -3784,9 +3784,9 @@ local lang = redis:get(hash)
 rules = administration[arg.chat_id]['rules']
 else
    if not lang then
-     rules = "ℹ️ The Default Rules :\n1⃣ No Flood.\n2⃣ No Spam.\n3⃣ No Advertising.\n4⃣ Try to stay on topic.\n5⃣ Forbidden any racist, sexual, homophobic or gore content.\n➡️ Repeated failure to comply with these rules will cause ban.\n@BeyondTeam"
+     rules = "ℹ️ The Default Rules :\n1⃣ No Flood.\n2⃣ No Spam.\n3⃣ No Advertising.\n4⃣ Try to stay on topic.\n5⃣ Forbidden any racist, sexual, homophobic or gore content.\n➡️ Repeated failure to comply with these rules will cause ban.\n"
     elseif lang then
-       rules = "ℹ️ قوانین پپیشفرض:\n1⃣ ارسال پیام مکرر ممنوع.\n2⃣ اسپم ممنوع.\n3⃣ تبلیغ ممنوع.\n4⃣ سعی کنید از موضوع خارج نشید.\n5⃣ هرنوع نژاد پرستی, شاخ بازی و پورنوگرافی ممنوع .\n➡️ از قوانین پیروی کنید, در صورت عدم رعایت قوانین اول اخطار و در صورت تکرار مسدود.\n@BeyondTeam"
+       rules = "ℹ️ قوانین پپیشفرض:\n1⃣ ارسال پیام مکرر ممنوع.\n2⃣ اسپم ممنوع.\n3⃣ تبلیغ ممنوع.\n4⃣ سعی کنید از موضوع خارج نشید.\n5⃣ هرنوع نژاد پرستی, شاخ بازی و پورنوگرافی ممنوع .\n➡️ از قوانین پیروی کنید, در صورت عدم رعایت قوانین اول اخطار و در صورت تکرار مسدود.\n"
  end
 end
 if data.username_ then
@@ -3827,9 +3827,9 @@ end
  end
 return {
 patterns ={
-"^[!/#](id)$",
+"^[!/#](userid)$",
 "^(ایدی)$",
-"^[!/#](id) (.*)$",
+"^[!/#](userid) (.*)$",
 "^(ایدی) (.*)$",
 "^[!/#](pin)$",
 "^(سنجاق)$",
