@@ -122,7 +122,7 @@ local data = load_data(_config.moderation.data)
     end
 if data[tostring(msg.to.id)]['filterlist'][(word)] then
    if not lang then
-         return "*Error!*\n`The verb` *"[..word..]"* `is already Filtered!`"
+         return "*Error!*\n`The verb` *"..word.."* `is already Filtered!`"
             else
          return "_کلمه_ *"..word.."* _از قبل فیلتر بود_"
     end
@@ -131,7 +131,7 @@ end
    data[tostring(msg.to.id)]['filterlist'][(word)] = true
      save_data(_config.moderation.data, data)
    if not lang then
-         return "*Done!*\n`New werb Added`\n*["..word.."]*"
+         return "*Done!*\n`New werb Added`\n*"..word.."*"
             else
          return "_کلمه_ *"..word.."* _به لیست کلمات فیلتر شده اضافه شد_"
     end
